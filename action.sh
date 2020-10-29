@@ -15,9 +15,14 @@ cd .. && rm -rf tmp/
 cd ${GITHUB_WORKSPACE}
 hugo version || exit 1
 
+echo 'show dir'
+ls -la
+
 echo '👯 Clone remote repository'
 git clone https://github.com/${REMOTE} ${DEST}
 
+echo 'show public'
+ls -la public/
 echo '🧹 Clean site'
 if [ -d "${DEST}" ]; then
     rm -rf ${DEST}/*
@@ -25,6 +30,9 @@ fi
 
 echo '🍳 Build site'
 hugo -D
+
+echo 'show public'
+ls -la public/
 
 echo '🎁 Publish to remote repository'
 cd ${DEST}
